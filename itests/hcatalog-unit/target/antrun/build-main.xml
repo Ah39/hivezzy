@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete dir="D:\git\hive\hive\itests\hcatalog-unit\target/tmp"/>
+  <delete dir="D:\git\hive\hive\itests\hcatalog-unit\target/warehouse"/>
+  <mkdir dir="D:\git\hive\hive\itests\hcatalog-unit\target/tmp"/>
+  <mkdir dir="D:\git\hive\hive\itests\hcatalog-unit\target/warehouse"/>
+  <mkdir dir="D:\git\hive\hive\itests\hcatalog-unit\target/tmp/conf"/>
+  <copy todir="D:\git\hive\hive\itests\hcatalog-unit\target/tmp/conf/">
+    <fileset dir="D:\git\hive\hive\itests\hcatalog-unit/../../data/conf/"/>
+  </copy>
+</target>
+</project>
