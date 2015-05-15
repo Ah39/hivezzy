@@ -3,6 +3,6 @@
  */
 @HiveVersionAnnotation(version="0.13.1", shortVersion="0.13.1",
                          revision="Unknown", branch="Unknown",
-                         user="hzhzzhaoziyan", date="Thu May 14 13:56:37 2015", url="file:///cygdrive/d/git/hive/hive",
+                         user="hzhzzhaoziyan", date="Thu May 14 19:39:23 2015", url="file:///cygdrive/d/git/hive/hivezzy",
                          srcChecksum="88f3dc17f75ffda6176faa649593b54e")
 package org.apache.hive.common;

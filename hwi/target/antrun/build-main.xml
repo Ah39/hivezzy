@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <delete dir="D:\git\hive\hive\hwi\target/tmp"/>
-  <delete dir="D:\git\hive\hive\hwi\target/warehouse"/>
-  <mkdir dir="D:\git\hive\hive\hwi\target/tmp"/>
-  <mkdir dir="D:\git\hive\hive\hwi\target/warehouse"/>
-  <mkdir dir="D:\git\hive\hive\hwi\target/tmp/conf"/>
-  <copy todir="D:\git\hive\hive\hwi\target/tmp/conf/">
-    <fileset dir="D:\git\hive\hive\hwi/../data/conf/"/>
+  <delete dir="D:\git\hive\hivezzy\hwi\target/tmp"/>
+  <delete dir="D:\git\hive\hivezzy\hwi\target/warehouse"/>
+  <mkdir dir="D:\git\hive\hivezzy\hwi\target/tmp"/>
+  <mkdir dir="D:\git\hive\hivezzy\hwi\target/warehouse"/>
+  <mkdir dir="D:\git\hive\hivezzy\hwi\target/tmp/conf"/>
+  <copy todir="D:\git\hive\hivezzy\hwi\target/tmp/conf/">
+    <fileset dir="D:\git\hive\hivezzy\hwi/../data/conf/"/>
   </copy>
 </target>
 </project>

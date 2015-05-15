@@ -157,8 +157,10 @@ public class FetchOperator implements Serializable {
    TableDesc tbldesc= work.getTblDesc();
    Properties tblProps = tbldesc.getProperties();
     
-   location = tblProps.getProperty(hive_metastoreConstants.META_TABLE_LOCATION);
-   LOG.error("fetchoprator_init+location:"+location);
+   //location = tblProps.getProperty(hive_metastoreConstants.META_TABLE_LOCATION);
+   //上面这样得到的是表的warehouse的位置
+   // location = work.get
+   LOG.error("fetchoprator_init___location:"+location);
     tblDataDone = false;
     if (hasVC && isPartitioned) {
       row = new Object[3];
@@ -333,6 +335,8 @@ public class FetchOperator implements Serializable {
 
   private void getNextPath() throws Exception {
     // first time
+	  LOG.error("TEST::"+work.getTblDir().getName());
+	ArrayList<Path> path=  work.getPartDir();
     if (iterPath == null) {
       if (work.isNotPartitioned()) {
         if (!tblDataDone) {
@@ -367,10 +371,11 @@ public class FetchOperator implements Serializable {
         iterPartDesc = work.getPartDesc().iterator();
       }
     }
-
+     
     while (iterPath.hasNext()) {
       Path nxt = iterPath.next();
       PartitionDesc prt = null;
+      LOG.error("PAHT:TEST:  "+nxt.getName());
       if (iterPartDesc != null) {
         prt = iterPartDesc.next();
       }
@@ -468,7 +473,7 @@ public class FetchOperator implements Serializable {
             + serde.getObjectInspector().getTypeName());
         LOG.debug("deserializer properties: " + partDesc.getOverlayedProperties());
       }
-
+      
       if (currPart != null) {
         getRowInspectorFromPartition(currPart, outputOI);
       }

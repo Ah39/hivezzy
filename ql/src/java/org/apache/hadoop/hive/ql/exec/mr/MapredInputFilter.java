@@ -1,5 +1,6 @@
 package org.apache.hadoop.hive.ql.exec.mr;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -55,8 +56,36 @@ public class MapredInputFilter implements PathFilter ,Configurable{
 		//Utilities.get
 		LOG  = LogFactory.getLog(this.getClass().getName());
 		mapwork=mrwork.getMapWork();
+		 LinkedHashMap<String,PartitionDesc> testpart=mapwork.getAliasToPartnInfo();
+		// mapwork.getPathToAliases()
+		 Set<Entry<String,PartitionDesc>> set1=testpart.entrySet();
+    Iterator<Entry<String, PartitionDesc>> ittest=set1.iterator();
+    Entry<String,PartitionDesc> tmp1=null;
+    PartitionDesc tmppart=null;
+    while(ittest.hasNext())
+    {
+    	tmp1=ittest.next();
+    	tmppart=tmp1.getValue();
+    	//tmppart.getPartSpec();
+    	 LOG.error("TEST:ALIAS__"+tmp1.getKey()+":::  "+tmp1.getValue());
+    	 LOG.error("TEST:TEST:");
+    }
+		
+  //  LinkedHashMap<String,String> pathtest=
+    	LinkedHashMap<String,ArrayList<String>> testpath=	mapwork.getPathToAliases();
+    	Set<Entry<String,ArrayList<String>>> path_set=testpath.entrySet();
+    	Iterator<Entry<String,ArrayList<String>>> path_it=path_set.iterator();
+    	Entry<String,ArrayList<String>> path_entry=null;
+    	while(path_it.hasNext())
+    	{
+    		path_entry=path_it.next();
+    		LOG.error("TEST:PATH:"+path_entry.getKey());
+    		if(!path_entry.getValue().isEmpty())
+    			LOG.error("value:"+path_entry.getValue().get(0));
+    	}
 		String alias = mapwork.getAliases().get(0);
 		LOG.error("aliases"+alias);
+	//	mapwork
 		Operator<?> topOp = mapwork.getAliasToWork().get(alias);
 	    PartitionDesc partDesc =mapwork.getAliasToPartnInfo().get(alias);
 	    //mapwork.getPathToPartitionInfo();
@@ -66,7 +95,15 @@ public class MapredInputFilter implements PathFilter ,Configurable{
 	    TableDesc tabledesc= partDesc.getTableDesc();
 	    //Log.error(message);
 		//Utilities.get
-	   
+	   LinkedHashMap<String,String> testspe=partDesc.getPartSpec();
+	   Set<Entry<String, String>> partit=testspe.entrySet();
+	   Iterator<Entry<String,String>> test_it=partit.iterator();
+	   Entry<String,String> partentry=null;
+	    while(test_it.hasNext())
+	    {
+	    	partentry=test_it.next();
+	    	LOG.error("parSpec:test:hello:: "+partentry.getKey()+" value::"+partentry.getValue());
+	    }
 	    Properties tblProps = tabledesc.getProperties();
 	  Set<Entry<Object, Object>> set=  tblProps.entrySet();
 	  Iterator it=set.iterator();
@@ -79,7 +116,7 @@ public class MapredInputFilter implements PathFilter ,Configurable{
 	        location = tblProps.getProperty(hive_metastoreConstants.META_TABLE_LOCATION);
 	       LOG.error(this.getClass().getName()+"   location"+location);
 	       
-	   LOG.error(this.getClass().getName()+"TEST:"+tabledesc.getTableName()+tabledesc.getDeserializerClass().getName());
+	  // LOG.error(this.getClass().getName()+"TEST:"+tabledesc.getTableName()+tabledesc.getDeserializerClass().getName());
 	   String plan = HiveConf.getVar(conf, HiveConf.ConfVars.PLAN);
 	  // String test_location= HiveConf.getVar(conf, HiveConf.ConfVars.m)
 	   LOG.error("PALN:"+plan);
